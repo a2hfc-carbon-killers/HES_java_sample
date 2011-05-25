@@ -27,7 +27,7 @@ public class SampleJavaClient {
     //class global variables
 
     //INSERT YOUR 3SCALE GUID HERE
-    private static String CLIENT_GUID = "INSERT YOUR 3SCALE GUID HERE";
+    private static String CLIENT_GUID = "INSERT YOUR 3SCALE KEY HERE";
 
     //SOAP_URL (this is where the webservice will call
     //do not put the trailing slash "/"

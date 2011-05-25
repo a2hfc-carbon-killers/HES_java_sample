@@ -44,7 +44,7 @@ namespace HESCSharpSample
         //class global variables
 
         //INSERT YOUR 3SCALE GUID HERE
-        private static String CLIENT_GUID = "INSERT YOUR 3SCALE GUID HERE";
+        private static String CLIENT_GUID = "INSERT YOUR 3SCALE KEY HERE";
 
 
         //SESSION_TYPE (0 = Quick Session, 1 = Detailed Session)

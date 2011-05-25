@@ -11,7 +11,7 @@
 $client = new SoapClient('http://sbapp.hescloud.net/session/wsdl', array('exceptions' => 0,'trace' => 1));
 
 //This is your 3scale client guid, you must get this from HES.
-$params['client_guid'] = 'INSERT YOUR 3SCALE GUID HERE';
+$params['client_guid'] = 'INSERT YOUR 3SCALE Key HERE';
 
 //use a valid zip code to create a new session
 $params['zipcode'] = '98661';
