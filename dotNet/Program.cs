@@ -2,31 +2,25 @@
 // HES API Sample Calls in C#.NET
 // By: Ben Johansen (ben@bighead.net)
 //
-// To get started... 
-// A. Create a C Sharp project in Visual Studio.Net Studio
-// B. Include this file in the project
-//   -- Right click on project and select Add->Existing Item, find Program.cs and select it then press Add.    
-// C. Create the api_SOAP_Layer.cs file using this process
-//
-//      Prior to Using this Code you will need to build the api_SOAP_Layer.cs file from the wdsl and include it in your project
+// Prior to Using this Code you will need to rebuild the api_SOAP_Layer.cs file from the wdsl
 // 
-//      use wsdl path: {obtain SOAP URL from HES}
+// use wsdl path: http://sbapp.hescloud.net/session/wsdl/
 //
-//      step 1. Microsoft Visual Studio provides a utilitly called "wsdl.exe" that reads the webservice wsdl and creates the CS objects
+// step 1. Microsoft Visual Studio provides a utilitly called "wsdl.exe" that reads the webservice wsdl and creates the CS objects
 //      for me it was in 6.0a SDK, I created a batch folder off of c:\ and put these lines in and ran apiwsdl.bat
 //
-//           batch file c:\bats\apiwsdl.bat
-//           --------------------------------               
-//           cd C:\Program Files\Microsoft SDKs\Windows\v6.0A\Bin\
-//           wsdl.exe (See use wsdl path above) /language:CS /out:"C:\Users\Your Name Here\Documents\Visual Studio 2008\Projects\HESCSharpSample\HESCSharpSample\api_SOAP_Layer.cs" /protocol:SOAP
-//           cd c:\bats
+//      batch file c:\bats\apiwsdl.bat
+//      --------------------------------               
+//      cd C:\Program Files\Microsoft SDKs\Windows\v6.0A\Bin\
+//      wsdl.exe (See use wsdl path above) /language:CS /out:"C:\Users\Ben Johansen\Documents\Visual Studio 2008\Projects\HESCSharpSample\HESCSharpSample\api_SOAP_Layer.cs" /protocol:SOAP
+//      cd c:\bats
 //  
-//           the file api_SOAP_Layer.cs is now in my project folder
+//      the file api_SOAP_Layer.cs is now in my project folder
 //
-//      step 2. Right click on project and select Add->Existing Item, find api_SOAP_Layer.cs and select it then press Add.
+// step 2. Right click on project and select Add->Existing Item, find api_SOAP_Layer.cs and select it then press Add.
 //
-//      step 3. Finally, System.Web.Services must be included in the project. 
-//      to do this, right click on References and select "Add Reference..." and locate "System.Web.Services" and click OK
+// step 3. Finally, System.Web.Services must be included in the project. 
+//         to do this, right click on References and select "Add Reference..." and locate "System.Web.Services" and click OK
 //
 //      There is a visual explanation of this under section "Using wsdl.exe" at http://sldn.softlayer.com/wiki/index.php/C_Sharp
 //------------------------------------------------------------------------------
@@ -50,7 +44,7 @@ namespace HESCSharpSample
         //class global variables
 
         //INSERT YOUR 3SCALE GUID HERE
-        private static String CLIENT_GUID = "INSERT YOUR 3SCALE KEY HERE";
+        private static String CLIENT_GUID = "INSERT YOUR 3SCALE GUID HERE";
 
 
         //SESSION_TYPE (0 = Quick Session, 1 = Detailed Session)
@@ -60,13 +54,13 @@ namespace HESCSharpSample
         private static int WEBSITE_TYPE = 0;
 
         //SESSION_ID
-        private static int SESSION_ID = 1926003;
+        private static int SESSION_ID = 1910562;
 
         //ZIPCODE
         private static String ZIPCODE = "98661";
 
         //VALIDATE (0 = just save, 1 = save and calc)
-        private static int VALIDATE = 0;
+        private static int VALIDATE = 1;
          
         static void Main(string[] args)
             {
@@ -83,7 +77,7 @@ namespace HESCSharpSample
                     // example: sessionValue = sessionId^1926003;uniqueName^;zipcode^98661;zipCity^Vancouver;zipState^Washington;calculated^0
                     //----------------------------
                     // ------ uncomment block below to run this sample ---------
-                    
+                    /*
                     RetrieveSessionByIdResponse[] newResults = sessionService.newSession(CLIENT_GUID, ZIPCODE, WEBSITE_TYPE);
                     Console.WriteLine("New Session:");
                     Console.WriteLine("Session ID = " + newResults[(newResults.Length - 1)].sessionValue);
@@ -109,7 +103,7 @@ namespace HESCSharpSample
                         //this is just here to stop between each record
                         Console.ReadLine();
                     }
-                      
+                    */  
                     
 
                     //-----------------------------
@@ -149,7 +143,7 @@ namespace HESCSharpSample
                     // saveSession11
                     //----------------------------
                     // ------ uncomment block below to run this sample ---------
-                    /*
+                    
                        //create saveSession11 input_object data
                        //extraInputs
                        SaveSessionExtraInputs extraInputs = new SaveSessionExtraInputs();
@@ -161,83 +155,75 @@ namespace HESCSharpSample
                         extraInputs.formGroup = "Quick";
                         extraInputs.formForm = "General";
                        //saveInputs
-                       SaveSessionSaveInputs[] saveInputs = new SaveSessionSaveInputs[19];
+                       SaveSessionSaveInputs[] saveInputs = new SaveSessionSaveInputs[17];
                        saveInputs[0] = new SaveSessionSaveInputs();
                         saveInputs[0].inputTableName = "whole_house_input";
-                        saveInputs[0].inputColumnName = "useTariff";
-                        saveInputs[0].s_value = "no";
+                        saveInputs[0].inputColumnName = "uniqueName";
+                        saveInputs[0].s_value ="java test";
                        saveInputs[1] = new SaveSessionSaveInputs();
-                        saveInputs[1].inputTableName = "whole_house_input";
-                        saveInputs[1].inputColumnName = "uniqueName";
-                        saveInputs[1].s_value ="java test";
+                        saveInputs[1].inputTableName ="whole_house_input";
+                        saveInputs[1].inputColumnName ="emailAddress";
+                        saveInputs[1].s_value = "";
                        saveInputs[2] = new SaveSessionSaveInputs();
                         saveInputs[2].inputTableName ="whole_house_input";
-                        saveInputs[2].inputColumnName ="emailAddress";
-                        saveInputs[2].s_value = "";
+                        saveInputs[2].inputColumnName ="purpose";
+                        saveInputs[2].s_value = "0";
                        saveInputs[3] = new SaveSessionSaveInputs();
-                        saveInputs[3].inputTableName ="whole_house_input";
-                        saveInputs[3].inputColumnName ="purpose";
-                        saveInputs[3].s_value = "0";
+                        saveInputs[3].inputTableName = "whole_house_input";
+                        saveInputs[3].inputColumnName ="purposeOther";
+                        saveInputs[3].s_value = "";
                        saveInputs[4] = new SaveSessionSaveInputs();
-                        saveInputs[4].inputTableName = "whole_house_input";
-                        saveInputs[4].inputColumnName ="purposeOther";
-                        saveInputs[4].s_value = "";
+                        saveInputs[4].inputTableName ="whole_house_input";
+                        saveInputs[4].inputColumnName ="address";
+                        saveInputs[4].s_value ="";
                        saveInputs[5] = new SaveSessionSaveInputs();
                         saveInputs[5].inputTableName ="whole_house_input";
-                        saveInputs[5].inputColumnName ="address";
-                        saveInputs[5].s_value ="";
+                        saveInputs[5].inputColumnName ="city";
+                        saveInputs[5].s_value ="Portland";
                        saveInputs[6] = new SaveSessionSaveInputs();
                         saveInputs[6].inputTableName ="whole_house_input";
-                        saveInputs[6].inputColumnName ="city";
-                        saveInputs[6].s_value ="Portland";
+                        saveInputs[6].inputColumnName ="stateCode";
+                        saveInputs[6].s_value ="WA";
                        saveInputs[7] = new SaveSessionSaveInputs();
                         saveInputs[7].inputTableName ="whole_house_input";
-                        saveInputs[7].inputColumnName ="stateCode";
-                        saveInputs[7].s_value ="WA";
+                        saveInputs[7].inputColumnName ="weatherCity";
+                        saveInputs[7].s_value ="Portland OR";
                        saveInputs[8] = new SaveSessionSaveInputs();
                         saveInputs[8].inputTableName ="whole_house_input";
-                        saveInputs[8].inputColumnName ="weatherCity";
-                        saveInputs[8].s_value ="Portland OR";
+                        saveInputs[8].inputColumnName ="year";
+                        saveInputs[8].s_value ="1971";
                        saveInputs[9] = new SaveSessionSaveInputs();
                         saveInputs[9].inputTableName ="whole_house_input";
-                        saveInputs[9].inputColumnName ="year";
-                        saveInputs[9].s_value ="1971";
+                        saveInputs[9].inputColumnName ="occupants_0_5";
+                        saveInputs[9].s_value ="0";
                        saveInputs[10] = new SaveSessionSaveInputs();
                         saveInputs[10].inputTableName ="whole_house_input";
-                        saveInputs[10].inputColumnName ="occupants_0_5";
-                        saveInputs[10].s_value ="0";
+                        saveInputs[10].inputColumnName ="occupants_6_13";
+                        saveInputs[10].s_value ="1";
                        saveInputs[11] = new SaveSessionSaveInputs();
                         saveInputs[11].inputTableName ="whole_house_input";
-                        saveInputs[11].inputColumnName ="occupants_6_13";
-                        saveInputs[11].s_value ="1";
+                        saveInputs[11].inputColumnName ="occupants_14_64";
+                        saveInputs[11].s_value ="2";
                        saveInputs[12] = new SaveSessionSaveInputs();
                         saveInputs[12].inputTableName ="whole_house_input";
-                        saveInputs[12].inputColumnName ="occupants_14_64";
-                        saveInputs[12].s_value ="2";
+                        saveInputs[12].inputColumnName ="occupants_65_plus";
+                        saveInputs[12].s_value ="0";
                        saveInputs[13] = new SaveSessionSaveInputs();
                         saveInputs[13].inputTableName ="whole_house_input";
-                        saveInputs[13].inputColumnName ="occupants_65_plus";
-                        saveInputs[13].s_value ="0";
+                        saveInputs[13].inputColumnName ="priceElect";
+                        saveInputs[13].s_value ="0.076";
                        saveInputs[14] = new SaveSessionSaveInputs();
                         saveInputs[14].inputTableName ="whole_house_input";
-                        saveInputs[14].inputColumnName ="priceElect";
-                        saveInputs[14].s_value ="0.076";
+                        saveInputs[14].inputColumnName ="priceGas";
+                        saveInputs[14].s_value ="1.31";
                        saveInputs[15] = new SaveSessionSaveInputs();
                         saveInputs[15].inputTableName ="whole_house_input";
-                        saveInputs[15].inputColumnName ="priceGas";
-                        saveInputs[15].s_value ="1.31";
+                        saveInputs[15].inputColumnName ="priceLpg";
+                        saveInputs[15].s_value ="2.38";
                        saveInputs[16] = new SaveSessionSaveInputs();
                         saveInputs[16].inputTableName ="whole_house_input";
-                        saveInputs[16].inputColumnName ="priceLpg";
-                        saveInputs[16].s_value ="2.38";
-                       saveInputs[17] = new SaveSessionSaveInputs();
-                        saveInputs[17].inputTableName ="whole_house_input";
-                        saveInputs[17].inputColumnName ="priceOil";
-                        saveInputs[17].s_value ="3.16";
-                       saveInputs[18] = new SaveSessionSaveInputs();
-                        saveInputs[18].inputTableName ="whole_house_input";
-                        saveInputs[18].inputColumnName ="tariffId";
-                        saveInputs[18].s_value ="ag-4";
+                        saveInputs[16].inputColumnName ="priceOil";
+                        saveInputs[16].s_value ="3.16";
                        //lightInputs
                        SaveSessionLightInputs[] lightInputs = new SaveSessionLightInputs[0];
 
@@ -253,8 +239,10 @@ namespace HESCSharpSample
                     Console.WriteLine("SaveSession11 Outputs:");
                     Console.WriteLine("ReturnCode = " + saveResults.returnCode);
                     Console.WriteLine("ReturnText = " + saveResults.returnText);
+                    //this is just here to stop between each record
+                    Console.ReadLine();
                     
-                    */
+                    
 
                     //-----------------------------
                     // Retrieve Session Summary Result 

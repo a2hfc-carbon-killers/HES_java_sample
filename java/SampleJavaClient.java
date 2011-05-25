@@ -18,29 +18,20 @@ import java.util.*;
 /**
  * SampleJavaClient
  *
- * This is to be the sample given out in JAVA to access the HES APIs
- * THis code was created by NetBeans IDE 6.9.1
+ * this is to be the sample given out in JAVA to access the HES APIs
+ *
  * @author ben johansen (ben@bighead.net)
- *
- * To implmement this code do the following
- *
- * 1. Create a JAVA project in net beans
- * 
- * 2. add this file to the Sources Packages
- *
- * 3. obtain the 3scale and SOAP URL from HES
- *
-*/
+ */
 public class SampleJavaClient {
 
     //class global variables
 
     //INSERT YOUR 3SCALE GUID HERE
-    private static String CLIENT_GUID = "INSERT YOUR 3SCALE KEY HERE";
+    private static String CLIENT_GUID = "INSERT YOUR 3SCALE GUID HERE";
 
     //SOAP_URL (this is where the webservice will call
     //do not put the trailing slash "/"
-    private static String SOAP_URL = "INSERT YOUR SOAP URL HERE";
+    private static String SOAP_URL = "http://sbapp.hescloud.net/session";
 
 
     //SESSION_TYPE (0 = Quick Session, 1 = Detailed Session)
@@ -50,13 +41,13 @@ public class SampleJavaClient {
     private static String WEBSITE_TYPE = "0";
 
     //SESSION_ID
-    private static Integer SESSION_ID = 1909390;
+    private static Integer SESSION_ID = 1910566;
 
     //ZIPCODE
     private static String ZIPCODE = "98661";
 
     //VALIDATE (0 = just save, 1 = save and calc)
-    private static Integer VALIDATE = 0;
+    private static Integer VALIDATE = 1;
 
 
 
@@ -78,9 +69,7 @@ public class SampleJavaClient {
             * sessionValue = sessionId^1925977;uniqueName^;zipcode^98661;zipCity^Vancouver;zipState^Washington;calculated^0
             */
            //----- un-comment line below to run this sample -----
-           
            System.out.println(callAPIViaSOAP(callnewSession(CLIENT_GUID,ZIPCODE,WEBSITE_TYPE)));
-           
 
            /*
            --------------------------------
@@ -113,88 +102,79 @@ public class SampleJavaClient {
             extraInputs.setFormGroup("Quick");
             extraInputs.setFormForm("General");
             //saveInputs
-           SaveSessionSaveInputs[] saveInputs = new SaveSessionSaveInputs[20];
+           SaveSessionSaveInputs[] saveInputs = new SaveSessionSaveInputs[18];
            saveInputs[0] = new SaveSessionSaveInputs();
             saveInputs[0].setInputTableName("whole_house_input");
-            saveInputs[0].setInputColumnName("useTariff");
-            saveInputs[0].setS_value("no");
+            saveInputs[0].setInputColumnName("uniqueName");
+            saveInputs[0].setS_value("java test");
            saveInputs[1] = new SaveSessionSaveInputs();
             saveInputs[1].setInputTableName("whole_house_input");
-            saveInputs[1].setInputColumnName("uniqueName");
-            saveInputs[1].setS_value("java test");
+            saveInputs[1].setInputColumnName("emailAddress");
+            saveInputs[1].setS_value("");
            saveInputs[2] = new SaveSessionSaveInputs();
             saveInputs[2].setInputTableName("whole_house_input");
-            saveInputs[2].setInputColumnName("emailAddress");
-            saveInputs[2].setS_value("");
+            saveInputs[2].setInputColumnName("purpose");
+            saveInputs[2].setS_value("0");
            saveInputs[3] = new SaveSessionSaveInputs();
             saveInputs[3].setInputTableName("whole_house_input");
-            saveInputs[3].setInputColumnName("purpose");
-            saveInputs[3].setS_value("0");
+            saveInputs[3].setInputColumnName("purposeOther");
+            saveInputs[3].setS_value("");
            saveInputs[4] = new SaveSessionSaveInputs();
             saveInputs[4].setInputTableName("whole_house_input");
-            saveInputs[4].setInputColumnName("purposeOther");
+            saveInputs[4].setInputColumnName("address");
             saveInputs[4].setS_value("");
            saveInputs[5] = new SaveSessionSaveInputs();
             saveInputs[5].setInputTableName("whole_house_input");
-            saveInputs[5].setInputColumnName("address");
-            saveInputs[5].setS_value("");
+            saveInputs[5].setInputColumnName("city");
+            saveInputs[5].setS_value("Portland");
            saveInputs[6] = new SaveSessionSaveInputs();
             saveInputs[6].setInputTableName("whole_house_input");
-            saveInputs[6].setInputColumnName("city");
-            saveInputs[6].setS_value("Portland");
+            saveInputs[6].setInputColumnName("stateCode");
+            saveInputs[6].setS_value("WA");
            saveInputs[7] = new SaveSessionSaveInputs();
             saveInputs[7].setInputTableName("whole_house_input");
-            saveInputs[7].setInputColumnName("stateCode");
-            saveInputs[7].setS_value("WA");
+            saveInputs[7].setInputColumnName("weatherCity");
+            saveInputs[7].setS_value("Portland OR");
            saveInputs[8] = new SaveSessionSaveInputs();
             saveInputs[8].setInputTableName("whole_house_input");
-            saveInputs[8].setInputColumnName("weatherCity");
-            saveInputs[8].setS_value("Portland OR");
+            saveInputs[8].setInputColumnName("year");
+            saveInputs[8].setS_value("1971");
            saveInputs[9] = new SaveSessionSaveInputs();
             saveInputs[9].setInputTableName("whole_house_input");
-            saveInputs[9].setInputColumnName("year");
-            saveInputs[9].setS_value("1971");
+            saveInputs[9].setInputColumnName("occupants_0_5");
+            saveInputs[9].setS_value("0");
            saveInputs[10] = new SaveSessionSaveInputs();
             saveInputs[10].setInputTableName("whole_house_input");
-            saveInputs[10].setInputColumnName("occupants_0_5");
-            saveInputs[10].setS_value("0");
+            saveInputs[10].setInputColumnName("occupants_6_13");
+            saveInputs[10].setS_value("1");
            saveInputs[11] = new SaveSessionSaveInputs();
             saveInputs[11].setInputTableName("whole_house_input");
-            saveInputs[11].setInputColumnName("occupants_6_13");
-            saveInputs[11].setS_value("1");
+            saveInputs[11].setInputColumnName("occupants_14_64");
+            saveInputs[11].setS_value("2");
            saveInputs[12] = new SaveSessionSaveInputs();
             saveInputs[12].setInputTableName("whole_house_input");
-            saveInputs[12].setInputColumnName("occupants_14_64");
-            saveInputs[12].setS_value("2");
+            saveInputs[12].setInputColumnName("occupants_65_plus");
+            saveInputs[12].setS_value("0");
            saveInputs[13] = new SaveSessionSaveInputs();
             saveInputs[13].setInputTableName("whole_house_input");
-            saveInputs[13].setInputColumnName("occupants_65_plus");
-            saveInputs[13].setS_value("0");
+            saveInputs[13].setInputColumnName("priceElect");
+            saveInputs[13].setS_value("0.076");
            saveInputs[14] = new SaveSessionSaveInputs();
             saveInputs[14].setInputTableName("whole_house_input");
-            saveInputs[14].setInputColumnName("priceElect");
-            saveInputs[14].setS_value("0.076");
+            saveInputs[14].setInputColumnName("priceGas");
+            saveInputs[14].setS_value("1.31");
            saveInputs[15] = new SaveSessionSaveInputs();
             saveInputs[15].setInputTableName("whole_house_input");
-            saveInputs[15].setInputColumnName("priceGas");
-            saveInputs[15].setS_value("1.31");
+            saveInputs[15].setInputColumnName("priceLpg");
+            saveInputs[15].setS_value("2.38");
            saveInputs[16] = new SaveSessionSaveInputs();
             saveInputs[16].setInputTableName("whole_house_input");
-            saveInputs[16].setInputColumnName("priceLpg");
-            saveInputs[16].setS_value("2.38");
+            saveInputs[16].setInputColumnName("priceOil");
+            saveInputs[16].setS_value("3.16");
            saveInputs[17] = new SaveSessionSaveInputs();
             saveInputs[17].setInputTableName("whole_house_input");
-            saveInputs[17].setInputColumnName("priceOil");
-            saveInputs[17].setS_value("3.16");
-           saveInputs[18] = new SaveSessionSaveInputs();
-            saveInputs[18].setInputTableName("whole_house_input");
-            saveInputs[18].setInputColumnName("tariffId");
-            saveInputs[18].setS_value("ag-4");
-
-           saveInputs[19] = new SaveSessionSaveInputs();
-            saveInputs[19].setInputTableName("whole_house_input");
-            saveInputs[19].setInputColumnName("formsCompletionArray");
-            saveInputs[19].setS_value("Quick_General^2;Quick_Building-Design^0;Quick_Appliances-Equipment^0;Detailed_General^0;Detailed_Exterior-Shading^0;Detailed_Air-Tightness^0;Detailed_Foundation-Floor^0;Detailed_Walls^0;Detailed_Doors-Windows^0;Detailed_Attic-Roof^0;Detailed_Ducts-Pipes^0;Detailed_Thermostat^0;Detailed_Heating-Equipment^0;Detailed_Cooling-Equipment^0;Detailed_Water-Heating^0;Detailed_Lighting^0;Detailed_Refrigerators-Freezers^0;Detailed_Cooking-Dishwashing^0;Detailed_Laundry^0;Detailed_HotTubs-Spas-Pumps^0;Detailed_Entertainment^0;Detailed_Home-Office^0;Detailed_Miscellaneous-Kitchen-Equipment^0;Detailed_Other-Appliances^0;Detailed_House-Shape-Size^0;Detailed_Skylights^0");
+            saveInputs[17].setInputColumnName("formsCompletionArray");
+            saveInputs[17].setS_value("Quick_General^2;Quick_Building-Design^0;Quick_Appliances-Equipment^0;Detailed_General^0;Detailed_Exterior-Shading^0;Detailed_Air-Tightness^0;Detailed_Foundation-Floor^0;Detailed_Walls^0;Detailed_Doors-Windows^0;Detailed_Attic-Roof^0;Detailed_Ducts-Pipes^0;Detailed_Thermostat^0;Detailed_Heating-Equipment^0;Detailed_Cooling-Equipment^0;Detailed_Water-Heating^0;Detailed_Lighting^0;Detailed_Refrigerators-Freezers^0;Detailed_Cooking-Dishwashing^0;Detailed_Laundry^0;Detailed_HotTubs-Spas-Pumps^0;Detailed_Entertainment^0;Detailed_Home-Office^0;Detailed_Miscellaneous-Kitchen-Equipment^0;Detailed_Other-Appliances^0;Detailed_House-Shape-Size^0;Detailed_Skylights^0");
 
             //lightInputs
            SaveSessionLightInputs lightInputs[] = new SaveSessionLightInputs[0];
@@ -876,7 +856,7 @@ public class SampleJavaClient {
                         //inputTableName
                         SOAPElement s_value = saveItem.addChildElement(sf.createName("s_value"));
                         s_value.addAttribute(sf.createName("xsi:type"), "xsd:string");
-                        s_value.addTextNode(inObj.saveInputs[j].inputTableName);
+                        s_value.addTextNode(inObj.saveInputs[j].s_value);
 
                     }
                  }

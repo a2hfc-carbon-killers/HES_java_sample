@@ -6,12 +6,12 @@
 * updated to 1.1 methods by: Ben Johansen (ben@bighead.net)
 */
 
-//This is the SOAP URL, you must get this from HES.
-$params['soap_url'] = 'INSERT YOUR SOAP URL HERE';
 
+//initiate PHP 5 soap client with the public wsdl on the HES-Sandbox system
+$client = new SoapClient('http://sbapp.hescloud.net/session/wsdl', array('exceptions' => 0,'trace' => 1));
 
-//This is your 3scale key, you must get this from HES.
-$params['client_guid'] = 'INSERT YOUR 3SCALE KEY HERE';
+//This is your 3scale client guid, you must get this from HES.
+$params['client_guid'] = 'INSERT YOUR 3SCALE GUID HERE';
 
 //use a valid zip code to create a new session
 $params['zipcode'] = '98661';
@@ -24,10 +24,6 @@ $params['website_type'] = '0';
 $params['validate'] = '0';
 
 
-//initiate PHP 5 soap client with the public wsdl on the HES-Sandbox system
-$client = new SoapClient($params['soap_url'], array('exceptions' => 0,'trace' => 1));
-
-
 //------------------------------------------------------
 //Now lets create a new session, and grab the valid session id.
 //------------------------------------------------------
@@ -37,9 +33,12 @@ if (is_soap_fault($result)) {
 }
 
 //a lot of data is returned, this is designed to build the forms on a GUI website, but we only need the session id.
+//have to extract it from small array returned
 $last_result_array = end($result);//$result[61];
-$last_result_array = $last_result_array->_classProperties;
-$params['session_id'] = $last_result_array['defaultValue'];
+$sessionValueArray = $last_result_array->sessionValue;
+$sessionValueSubArray = explode(";",$sessionValueArray);
+$sessionValueSubSubArray = explode("^",$sessionValueSubArray[0]);
+$params['session_id'] = $sessionValueSubSubArray[1];
 
 //------------------------------------------------------
 //now lets save session
@@ -162,12 +161,8 @@ $extra_inputs_object = new SaveSessionExtraInputs();
 //populate the input_object_array with input_save_objects with save values
 $input_save_object = new SaveSessionSaveInputs();            
             $input_save_object->inputTableName = "whole_house_input";
-            $input_save_object->inputColumnName = "useTariff";
-            $input_save_object->s_value = "no";
-            $inputs_object_array[] = $input_save_object;            
-            $input_save_object->inputTableName = "whole_house_input";
             $input_save_object->inputColumnName = "uniqueName";
-            $input_save_object->s_value ="java test";
+            $input_save_object->s_value ="php test";
             $inputs_object_array[] = $input_save_object;            
             $input_save_object->inputTableName ="whole_house_input";
             $input_save_object->inputColumnName ="emailAddress";
@@ -232,10 +227,7 @@ $input_save_object = new SaveSessionSaveInputs();
             $input_save_object->inputTableName ="whole_house_input";
             $input_save_object->inputColumnName ="priceOil";
             $input_save_object->s_value ="3.16";
-            $inputs_object_array[] = $input_save_object;            
-            $input_save_object->inputTableName ="whole_house_input";
-            $input_save_object->inputColumnName ="tariffId";
-            $input_save_object->s_value ="ag-4";
+            $inputs_object_array[] = $input_save_object;
 
 //load the input_object class with save objects
 $input_object->extraInputs = $extra_inputs_object;
