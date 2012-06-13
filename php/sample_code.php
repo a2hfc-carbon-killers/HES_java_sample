@@ -16,8 +16,8 @@
 // $calc_wsdl_url = 'http://tool-proapp.hescloud.net/calculate/wsdl/';
 
 // Sandbox - use for development and testing
-$session_wsdl = 'http://api-l.hescloud.net/session/wsdl';
-$calculate_wsdl = 'http://api-l.hescloud.net/calculate/wsdl';
+$session_wsdl = 'http://tool-sb-api.hescloud.net/session/wsdl';
+$calculate_wsdl = 'http://tool-sb-api.hescloud.net/calculate/wsdl';
 
 //initiate PHP 5 soap clients with the selected wsld
 

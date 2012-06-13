@@ -8,8 +8,8 @@
  * Important: You will need to run the following commands to generate scoring tool libraries from WSDL:
  *
  *   cd <your_project_folder>/src
- *   wsimport -keep -verbose -b binding.xml http://api-l.hescloud.net/calculate/wsdl
- *   wsimport -keep -verbose -b binding.xml http://api-l.hescloud.net/session/wsdl
+ *   wsimport -keep -verbose -b binding.xml http://tool-sb-api.hescloud.net/calculate/wsdl
+ *   wsimport -keep -verbose -b binding.xml http://tool-sb-api.hescloud.net/session/wsdl
  *
  * Note: wsimport is included as part of JDK 1.5 onwards. Tested with jdk1.6.0_24
  */

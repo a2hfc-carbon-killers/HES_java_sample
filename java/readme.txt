@@ -11,13 +11,13 @@
 =  "INSERT_YOUR_CERTIFIED_ASSESOR_NUMBER_HERE"         =
 ========================================================
 
-The sample code uses JAX-WS for SOAP communication.
+The sample code uses JAX-WS for SOAP communication. *** NOTE: THE UPDATED WSDL/API WILL BE AVAILABLE AFTER 06/13 ***
 
 You will need to run the following commands to auto-generate HES SOAP libraries from WSDL:
 
   cd <your_project_folder>/src
-  wsimport -keep -verbose -b binding.xml http://api-l.hescloud.net/calculate/wsdl
-  wsimport -keep -verbose -b binding.xml http://api-l.hescloud.net/session/wsdl
+  wsimport -keep -verbose -b binding.xml http://tool-sb-api.hescloud.net/calculate/wsdl
+  wsimport -keep -verbose -b binding.xml http://tool-sb-api.hescloud.net/session/wsdl
   
 The binding.xml can be found in this folder, this simply has intructions on how wsimport should handle underscores (necessary for the build to work).
 
