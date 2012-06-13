@@ -4,7 +4,7 @@
 ========================================================
 =  Note: You will need to obtain a 3scale key to use   =
 =  the api, once you have the key place it where you   =
-=  see the text "INSERT YOUR_3SCALE KEY HERE"          =
+=  see the text "INSERT YOUR_3SCALE_KEY_HERE"          =
 =                                                      =
 =  You will need to obtain a Certified Assesor (CA)    =
 =  Number also. Place this where you see the text      =
