@@ -1,25 +1,38 @@
-======================================
-=  Home Energy Saver API Sample Code =
-=           for Java                 =
-======================================
-=  Note: You will need to obtain a   =
-=  3scale key to use the api, once   =
-=  you have the key place it where   =
-=  you see the text "INSERT YOUR     =
-=  3SCALE Key HERE"                  =
-======================================
+========================================================
+=       Home Energy Scoring Tool API Sample Code       =
+=                     for Java                         =
+========================================================
+=  Note: You will need to obtain a 3scale key to use   =
+=  the api, once you have the key place it where you   =
+=  see the text "INSERT YOUR_3SCALE KEY HERE"          =
+=                                                      =
+=  You will need to obtain a Certified Assesor (CA)    =
+=  Number also. Place this where you see the text      =
+=  "INSERT_YOUR_CERTIFIED_ASSESOR_NUMBER_HERE"         =
+========================================================
 
-The sample code is a series of methods 
-(they are separate code blocks, commented out)
-the first is uncommented and will create a new session, 
-you will need to get the session id to use in the 
-following code blocks which are commented out
+The sample code uses JAX-WS for SOAP communication.
 
-Code blocks in this sample
-1. callnewsession = create a new session
-2. callretrievesessionbyid11 = retrieve all the session information
-3. callsaveSession11 = save session data to the database with validate 
-4. callretrieveSummarySessionResults11 = retrieve calc summary data
-The results are just output to the console
+You will need to run the following commands to auto-generate HES SOAP libraries from WSDL:
 
-the final method is callAPIViaSOAP, which does the actual SOAP Call.
+  cd <your_project_folder>/src
+  wsimport -keep -verbose -b binding.xml http://api-l.hescloud.net/calculate/wsdl
+  wsimport -keep -verbose -b binding.xml http://api-l.hescloud.net/session/wsdl
+  
+The binding.xml can be found in this folder, this simply has intructions on how wsimport should handle underscores (necessary for the build to work).
+
+Once these commands have completed, you will have two new libraries:
+
+  gov.lbl.hes.scoring_tool.session.*
+  gov.lbl.hes.scoring_tool.calculate.*
+=====================================================================
+
+The following methods are called in this sample code:
+
+1. newSessionFromAddress()      = creates a new session
+2. saveLabelSession()           = saves inputs to the database with validation and runs the calc (assuming the "validate" parameter is set to 1)
+3. retrieveLabelDetailResults() = retrieves the calculated results
+4. generateHesLabel()           = generates a label and returns an array of urls (original multi-page pdf, and seperate individual pages)
+
+The results and label urls are just outputted to the console.
+
