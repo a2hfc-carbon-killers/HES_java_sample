@@ -1,5 +1,5 @@
 /**
- * SampleJavaClient - June 12th, 2012
+ * SampleJavaClient - June 15th, 2012
  *
  * This code will generate a Home Energy Scoring Tool (HEST) Label using JAX-WS
  *
@@ -68,7 +68,7 @@ public class SampleJavaClient{
         if (returnCode > 0)
         {
             // Grab the RetrieveSessionByIdResponse object
-            RetrieveSessionByIdResponse response = (RetrieveSessionByIdResponse) retrieveSessionByIdResponse.value;
+            RetrieveSessionByIdResponse_Type response = (RetrieveSessionByIdResponse_Type) retrieveSessionByIdResponse.value;
 
             // Get a list of session inputs
             List sessionInput = response.getSessionInput();
@@ -77,7 +77,7 @@ public class SampleJavaClient{
             int size = sessionInput.size();
 
             // Retrieve the last sessionInput row (meta data)
-            SessionInput lastRow = (SessionInput) sessionInput.get(sessionInput.size()-1);
+            SessionInput_Type lastRow = (SessionInput_Type) sessionInput.get(sessionInput.size()-1);
 
             // Grab the sessionValue for this row
             String sessionValue = lastRow.getSessionValue();
