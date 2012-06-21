@@ -11,7 +11,7 @@
 =  "INSERT_YOUR_CERTIFIED_ASSESOR_NUMBER_HERE"         =
 ========================================================
 
-The sample code uses JAX-WS for SOAP communication. *** NOTE: THE UPDATED WSDL/API WILL BE AVAILABLE AFTER 06/13 ***
+The sample code uses JAX-WS for SOAP communication.
 
 You will need to run the following commands to auto-generate HES SOAP libraries from WSDL:
 
