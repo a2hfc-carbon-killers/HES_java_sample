@@ -1,5 +1,5 @@
 /**
- * SampleJavaClient - June 15th, 2012
+ * SampleJavaClient - June 21st, 2012
  *
  * This code will generate a Home Energy Scoring Tool (HEST) Label using JAX-WS
  *
@@ -475,10 +475,11 @@ public class SampleJavaClient{
                 Holder auditDate = new Holder();
                 Holder printDate = new Holder();
                 Holder airConditioned = new Holder();
+                Holder labelResult = new Holder();
                 Holder sessionResult = new Holder();
 
                 // Get detailed results
-                sp.retrieveLabelDetailResults(clientGuid,sessionId,returnCodeObj,returnComment,address,climateZone,numberBedrooms,floorArea,houseSizeGroup,caNumberReturn,auditDate,printDate,airConditioned,sessionResult);
+                sp.retrieveLabelDetailResults(clientGuid,sessionId,returnCodeObj,returnComment,address,climateZone,numberBedrooms,floorArea,houseSizeGroup,caNumberReturn,auditDate,printDate,airConditioned,labelResult,sessionResult);
 
                 // We need returnCode as an int
                 tmp        = (Integer) returnCodeObj.value;
@@ -488,6 +489,12 @@ public class SampleJavaClient{
                 {
                     // Lets us know the retrieve was successful (ie. "Save & Calc Ok")
                     System.out.println("retrieveLabelDetailResults: " + returnComment.value);
+
+                    // Grab the labelResult object
+                    LabelResult label_result = (LabelResult) labelResult.value;
+
+                    System.out.println("\n-------------------------------------\nDumping label results:\n-------------------------------------\n");
+                    dump_parameters(label_result);
 
                     // Grab the sessionResult object
                     SessionResult result = (SessionResult) sessionResult.value;
